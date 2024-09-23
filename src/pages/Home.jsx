@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react'
-import appwriteService from "../appwrite/config";
+import appwriteService from "../Appwrite/config";
 import {Container, PostCard} from '../components/index'
-import authService from '../appwrite/auth';
+import authService from '../Appwrite/auth';
 
 function Home() {
     const [posts, setPosts] = useState([])
