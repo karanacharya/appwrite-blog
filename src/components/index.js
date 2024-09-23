@@ -1,7 +1,7 @@
-import Select from "./Select";
+import Select from "./Select.jsx";
 import Header from "./Header/Header";
 import Footer from "./Footer/Footer";
-import Container from "../../src/components/container/Container";
+import Container from "./container/Container.jsx";
 import Logo from "./Logo";
 import LogoutBtn from "./Header/LogoutBtn";
 import RTE from "./RTE";
@@ -12,6 +12,7 @@ import PostForm from "./post-form/PostForm";
 import PostCard from "./PostCard";
 import AuthLayout from "./AuthLayout";
 import Input from "./Input";
+
 export {
     Header,
     Footer,
@@ -27,4 +28,4 @@ export {
     AuthLayout, 
     Input,
     Select,
-}
+};
