@@ -1,11 +1,19 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Button, Input, RTE, Select } from "..";
 import appwriteService from "../../Appwrite/config";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
+
+
+
 export default function PostForm({ post }) {
+  
+   const navigate = useNavigate();
+   const userData = useSelector((state) => state.auth.userData);;
+
+
   const { register, handleSubmit, watch, setValue, control, getValues } =
     useForm({
       defaultValues: {
@@ -16,11 +24,21 @@ export default function PostForm({ post }) {
       },
     });
 
-  const navigate = useNavigate();
-  const userData = useSelector((state) => state.auth.userData);
-  console.log(userData.$id);
-  
 
+
+
+    if(userData){ 
+      console.log("userdata is present");    
+    }
+    else{
+      console.log("userdata not present"); 
+      location.reload();
+    }
+    console.log(userData.$id);
+        
+
+
+    
   const submit = async (data) => {
   
     if (post) {
@@ -30,7 +48,7 @@ export default function PostForm({ post }) {
         : null;
 
       if (file) {
-        appwriteService.deleteFile(post.featuredImage);
+        await appwriteService.deleteFile(post.featuredImage);
       }
 
       const dbPost = await appwriteService.updatePost(post.$id, {

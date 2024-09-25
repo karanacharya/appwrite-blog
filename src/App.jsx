@@ -12,25 +12,33 @@ function App() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if(authService.login){
-      console.log("verified");    
-    }
-    else{
-     console.log("un verified");
-     
-    }
+    (async()=>{
 
-
-    authService.getCurrentUser().then((userData) => {
-      if (userData) {
-        dispatch(login({ userData }));
-      } else {
-        
-        dispatch(logout());
-        navigate("/signup");        
+      if( await authService.login){
+        console.log("verified");    
       }
-      setLoading(false);
-    });
+      else{
+       console.log("un verified");
+       
+      }
+
+
+    await authService.getCurrentUser().then((userData) => {
+        if (userData) {
+          dispatch(login({ userData }));
+        } else {
+          
+          dispatch(logout());
+          navigate("/signup");        
+        }
+        setLoading(false);
+      });
+
+    })();
+  
+
+
+ 
   }, []);
 
   return !loading ? (

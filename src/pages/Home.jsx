@@ -7,20 +7,22 @@ function Home() {
     const [posts, setPosts] = useState([])
 
     useEffect(() => {
+        (async()=>{
 
-        appwriteService.getPosts().then((posts) => {
-            if (posts) {
-                setPosts(posts.documents)
-            }
-            else{
-                console.log("error in getpost from home.jsx");
-               
-            }
-        })
+           await appwriteService.getPosts().then((posts) => {
+                if (posts) {
+                    setPosts(posts.documents)
+                }
+                else{
+                    console.log("error in getpost from home.jsx");                   
+                }
+            })
+
+
+        })();
+
+        
     }, [])
-  
-   
-
    
     if (posts.length === 0) {
         return (
