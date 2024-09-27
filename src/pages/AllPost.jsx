@@ -6,10 +6,10 @@ function AllPosts() {
   const [posts, setPosts] = useState([]);
 
 
-  useEffect(() => {
-  
+  useEffect(() => {  
      appwriteService.getPosts([]).then((posts) => {
       if (posts) {
+        console.log("posts are present they are:",posts)
         setPosts(posts.documents);
       }
     });
